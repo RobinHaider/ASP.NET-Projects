@@ -36,7 +36,6 @@ namespace Primary_School_Management_System.Migrations
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Class", t => t.ClassID, cascadeDelete: true)
-                .Index(t => t.RollNo, unique: true)
                 .Index(t => t.ClassID);
             
             CreateTable(
@@ -98,7 +97,6 @@ namespace Primary_School_Management_System.Migrations
             DropIndex("dbo.Subject", new[] { "TeacherID" });
             DropIndex("dbo.Subject", new[] { "ClassID" });
             DropIndex("dbo.Student", new[] { "ClassID" });
-            DropIndex("dbo.Student", new[] { "RollNo" });
             DropIndex("dbo.Class", new[] { "TeacherID" });
             DropTable("dbo.Result");
             DropTable("dbo.Teacher");

@@ -21,6 +21,8 @@ namespace Primary_School_Management_System.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            //modelBuilder.Entity<>().HasRequired(d => d.).WithMany().WillCascadeOnDelete(false);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Primary_School_Management_System.Models
         public int ID { get; set; }
 
         [Required]
-        [Index(IsUnique = true)]
         [Range(1,300,ErrorMessage = "RollNo must be between 1 to 300")]
         public int RollNo { get; set; }
 
