@@ -15,14 +15,18 @@ namespace Primary_School_Management_System.DAL
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-        public DbSet<Result> Results { get; set; }
+        //public DbSet<Result> Results { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //modelBuilder.Entity<>().HasRequired(d => d.).WithMany().WillCascadeOnDelete(false);
+            //modelBuilder
+            //    .Entity<Result>()
+            //    .HasOptional(e => e.Subject)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

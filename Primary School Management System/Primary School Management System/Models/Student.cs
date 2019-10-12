@@ -55,5 +55,6 @@ namespace Primary_School_Management_System.Models
         public string GuardianEmail { get; set; }
 
         public virtual Class Class { get; set; }
+        
     }
 }

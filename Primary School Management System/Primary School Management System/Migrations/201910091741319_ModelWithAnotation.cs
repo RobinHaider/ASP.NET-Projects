@@ -66,39 +66,18 @@ namespace Primary_School_Management_System.Migrations
                     })
                 .PrimaryKey(t => t.ID);
             
-            CreateTable(
-                "dbo.Result",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        StudentID = c.Int(nullable: false),
-                        SubjectID = c.Int(nullable: false),
-                        Number = c.Int(),
-                        ExamType = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Student", t => t.StudentID, cascadeDelete: true)
-                .ForeignKey("dbo.Subject", t => t.SubjectID, cascadeDelete: true)
-                .Index(t => t.StudentID)
-                .Index(t => t.SubjectID);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Result", "SubjectID", "dbo.Subject");
-            DropForeignKey("dbo.Result", "StudentID", "dbo.Student");
             DropForeignKey("dbo.Class", "TeacherID", "dbo.Teacher");
             DropForeignKey("dbo.Subject", "TeacherID", "dbo.Teacher");
             DropForeignKey("dbo.Subject", "ClassID", "dbo.Class");
             DropForeignKey("dbo.Student", "ClassID", "dbo.Class");
-            DropIndex("dbo.Result", new[] { "SubjectID" });
-            DropIndex("dbo.Result", new[] { "StudentID" });
             DropIndex("dbo.Subject", new[] { "TeacherID" });
             DropIndex("dbo.Subject", new[] { "ClassID" });
             DropIndex("dbo.Student", new[] { "ClassID" });
             DropIndex("dbo.Class", new[] { "TeacherID" });
-            DropTable("dbo.Result");
             DropTable("dbo.Teacher");
             DropTable("dbo.Subject");
             DropTable("dbo.Student");
