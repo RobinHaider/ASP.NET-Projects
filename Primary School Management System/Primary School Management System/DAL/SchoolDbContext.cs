@@ -17,6 +17,10 @@ namespace Primary_School_Management_System.DAL
         public DbSet<Subject> Subjects { get; set; }
         //public DbSet<Result> Results { get; set; }
 
+        public SchoolDbContext():base("SchoolDbContext2")
+        {
+            
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
