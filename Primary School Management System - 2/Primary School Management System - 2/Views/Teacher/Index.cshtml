@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Primary_School_Management_System___2.Models.Teacher>
+﻿@using Primary_School_Management_System___2.Models
+@model IEnumerable<Primary_School_Management_System___2.Models.Teacher>
+
 
 @{
     ViewBag.Title = "Index";
@@ -21,7 +23,7 @@
             @Html.DisplayNameFor(model => model.MobileNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Subjects
         </th>
         <th>
             Class Teacher of
@@ -41,7 +43,12 @@
             @Html.DisplayFor(modelItem => item.MobileNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            @{
+                foreach (var subject in item.Subjects)
+                {
+                    <p>Class @subject.Class.ClassName : @subject.Name</p>
+                }
+            }
         </td>
         <td>
             

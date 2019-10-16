@@ -170,6 +170,16 @@ namespace Primary_School_Management_System___2.Migrations
                 }
             }
             context.SaveChanges();
+
+            //ExamType
+            var examTypes = new List<ExamType>()
+            {
+                new ExamType(){TypeName = "Half Yearly"},
+                new ExamType(){TypeName = "Final"}
+            };
+
+            examTypes.ForEach(s => context.ExamTypes.AddOrUpdate(p=>p.TypeName,s));
+
         }
     }
 }

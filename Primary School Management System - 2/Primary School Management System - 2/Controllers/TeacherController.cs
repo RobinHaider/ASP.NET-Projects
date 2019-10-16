@@ -18,7 +18,8 @@ namespace Primary_School_Management_System___2.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-            var teachers = db.Teachers;
+            var teachers = db.Teachers.Include(s=>s.Subjects);
+            ViewBag.ClassTeachers = db.Classes.ToList();
             return View(teachers.ToList());
         }
 

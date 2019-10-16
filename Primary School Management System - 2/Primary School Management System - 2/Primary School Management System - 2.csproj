@@ -194,11 +194,17 @@
     <Compile Include="Migrations\201910161431401_ClassTeacherRelation.Designer.cs">
       <DependentUpon>201910161431401_ClassTeacherRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910161706314_Result.cs" />
+    <Compile Include="Migrations\201910161706314_Result.Designer.cs">
+      <DependentUpon>201910161706314_Result.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\ExamType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -298,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910161431401_ClassTeacherRelation.resx">
       <DependentUpon>201910161431401_ClassTeacherRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161706314_Result.resx">
+      <DependentUpon>201910161706314_Result.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
