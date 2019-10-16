@@ -7,13 +7,13 @@ namespace Primary_School_Management_System___2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class TeacherAndSubject : IMigrationMetadata
+    public sealed partial class ClassTeacherRelation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TeacherAndSubject));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ClassTeacherRelation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910150649449_TeacherAndSubject"; }
+            get { return "201910161431401_ClassTeacherRelation"; }
         }
         
         string IMigrationMetadata.Source

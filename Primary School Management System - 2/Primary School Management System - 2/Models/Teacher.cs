@@ -32,6 +32,5 @@ namespace Primary_School_Management_System___2.Models
         public string NID { get; set; }
 
         public virtual ICollection<Subject> Subjects { get; set; }
-        public virtual Class Class { get; set; }
     }
 }

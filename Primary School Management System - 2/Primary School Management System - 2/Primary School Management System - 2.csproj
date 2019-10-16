@@ -186,9 +186,13 @@
     <Compile Include="Migrations\201910141410365_StudentAndClass.Designer.cs">
       <DependentUpon>201910141410365_StudentAndClass.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910150649449_TeacherAndSubject.cs" />
-    <Compile Include="Migrations\201910150649449_TeacherAndSubject.Designer.cs">
-      <DependentUpon>201910150649449_TeacherAndSubject.cs</DependentUpon>
+    <Compile Include="Migrations\201910151613422_TeacherAndSubject.cs" />
+    <Compile Include="Migrations\201910151613422_TeacherAndSubject.Designer.cs">
+      <DependentUpon>201910151613422_TeacherAndSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161431401_ClassTeacherRelation.cs" />
+    <Compile Include="Migrations\201910161431401_ClassTeacherRelation.Designer.cs">
+      <DependentUpon>201910161431401_ClassTeacherRelation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,8 +293,11 @@
     <EmbeddedResource Include="Migrations\201910141410365_StudentAndClass.resx">
       <DependentUpon>201910141410365_StudentAndClass.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910150649449_TeacherAndSubject.resx">
-      <DependentUpon>201910150649449_TeacherAndSubject.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910151613422_TeacherAndSubject.resx">
+      <DependentUpon>201910151613422_TeacherAndSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161431401_ClassTeacherRelation.resx">
+      <DependentUpon>201910161431401_ClassTeacherRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

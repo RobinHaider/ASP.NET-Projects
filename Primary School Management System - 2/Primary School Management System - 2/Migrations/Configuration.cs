@@ -71,19 +71,6 @@ namespace Primary_School_Management_System___2.Migrations
                 }
             }
 
-            //Class
-            var classes = new List<Class>()
-            {
-                new Class(){ClassName = "One"},
-                new Class(){ClassName = "Two"},
-                new Class(){ClassName = "Three"},
-                new Class(){ClassName = "Four"},
-                new Class(){ClassName = "Five"}
-            };
-
-            classes.ForEach(s => context.Classes.AddOrUpdate(p => p.ClassName, s));
-            context.SaveChanges();
-
             //Teacher
             var teachers = new List<Teacher>()
             {
@@ -99,6 +86,31 @@ namespace Primary_School_Management_System___2.Migrations
 
             teachers.ForEach(s => context.Teachers.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
+
+
+            //Class
+            //var classes = new List<Class>()
+            //{
+            //    new Class(){ClassName = "One"},
+            //    new Class(){ClassName = "Two"},
+            //    new Class(){ClassName = "Three"},
+            //    new Class(){ClassName = "Four"},
+            //    new Class(){ClassName = "Five"}
+            //};
+
+            var classes = new List<Class>()
+            {
+                new Class(){ClassName = "One", TeacherID = 5},
+                new Class(){ClassName = "Two", TeacherID = 4},
+                new Class(){ClassName = "Three", TeacherID = 3},
+                new Class(){ClassName = "Four", TeacherID = 2},
+                new Class(){ClassName = "Five", TeacherID = 1}
+            };
+
+            classes.ForEach(s => context.Classes.AddOrUpdate(p => p.ClassName, s));
+            context.SaveChanges();
+
+           
 
             //Subject
             var subjects = new List<Subject>()

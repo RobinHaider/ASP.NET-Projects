@@ -24,6 +24,10 @@ namespace Primary_School_Management_System___2.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
+            //configaring Class and teacher zero or one to one relation
+            //modelBuilder.Entity<Class>()
+            //    .HasOptional(s => s.Teacher)
+            //    .WithOptionalDependent(t => t.Class);
         }
     }
 }
