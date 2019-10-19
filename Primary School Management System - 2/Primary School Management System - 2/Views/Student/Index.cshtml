@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Primary_School_Management_System___2.Models.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Students";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Student", "Create")
 </p>
 @using (Html.BeginForm())
 {
@@ -79,7 +79,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
+            <a href="">Result</a>
         </td>
     </tr>
 }

@@ -16,6 +16,7 @@ namespace Primary_School_Management_System___2.DAL
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<ExamType> ExamTypes { get; set; }
         public DbSet<Result> Results { get; set; }
+        public DbSet<Religion> Religions { get; set; }
 
         public SchoolDbContext():base("SchoolDbcontext")
         {

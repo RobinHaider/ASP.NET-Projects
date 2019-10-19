@@ -17,76 +17,14 @@ namespace Primary_School_Management_System___2.Migrations
 
         protected override void Seed(Primary_School_Management_System___2.DAL.SchoolDbContext context)
         {
-            //Students
-            var students = new List<Student>
+            //Religion
+            var religions = new List<Religion>()
             {
-                //class 5
-                new Student(){RollNo = 1, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 2, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Rafiqul Islam", MotherName = "Josna Ara Begum", ClassID = 5, Address = "Abdul-Hoque Bari, Shibpur", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 3, Name = "Abdul Samad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 4, Name = "Sajid Ul Hoque", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null),FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 5, Name = "Pabel Islam", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                //Class 4
-                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null),FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                //class 3
-                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                //class 2
-                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                //class 1
-                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com"},
-
-
+                new Religion(){Name = "Islam"},
+                new Religion(){Name = "Hinduism"},
+                new Religion(){Name = "Buddhism"},
+                new Religion(){Name = "Christianity"}
             };
-
-            foreach (var student in students)
-            {
-                var studentInDatabase = context.Students.FirstOrDefault(s => s.ClassID == student.ClassID && s.RollNo == student.RollNo);
-                if (studentInDatabase == null)
-                {
-                    context.Students.Add(student);
-                }
-            }
-
-            //Teacher
-            var teachers = new List<Teacher>()
-            {
-                new Teacher(){Name = "Riad Al Faisal", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Faisal Hossain", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Sabbir Mohammad Shakil", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Ariful Hoque Rana", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Mizanur Rahman", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){ Name = "Nasib Al Farabi", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Noyon Chowdhury", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"},
-                new Teacher(){Name = "Mostafa Raju", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678"}
-            };
-
-            teachers.ForEach(s => context.Teachers.AddOrUpdate(p => p.Name, s));
-            context.SaveChanges();
-
 
             //Class
             //var classes = new List<Class>()
@@ -110,7 +48,82 @@ namespace Primary_School_Management_System___2.Migrations
             classes.ForEach(s => context.Classes.AddOrUpdate(p => p.ClassName, s));
             context.SaveChanges();
 
+            religions.ForEach(s => context.Religions.AddOrUpdate(p => p.Name, s));
+
+            //Teacher
+            var teachers = new List<Teacher>()
+            {
+                new Teacher(){Name = "Riad Al Faisal", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 1},
+                new Teacher(){Name = "Faisal Hossain", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 1},
+                new Teacher(){Name = "Sabbir Mohammad Shakil", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 1},
+                new Teacher(){Name = "Ariful Hoque Rana", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 2},
+                new Teacher(){Name = "Mizanur Rahman", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 3},
+                new Teacher(){ Name = "Nasib Al Farabi", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 4},
+                new Teacher(){Name = "Noyon Chowdhury", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 1},
+                new Teacher(){Name = "Mostafa Raju", Email = "robinhaider69@gmail.com", MobileNumber = "01831541161", Address = "Chowdhory Para, College Road, Sitakund", NID = "12345678912345678", ReligionID = 1}
+            };
+
+            teachers.ForEach(s => context.Teachers.AddOrUpdate(p => p.Name, s));
+            context.SaveChanges();
+
+
            
+
+            //Students
+            var students = new List<Student>
+            {
+                //class 5
+                new Student(){RollNo = 1, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 2, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Rafiqul Islam", MotherName = "Josna Ara Begum", ClassID = 5, Address = "Abdul-Hoque Bari, Shibpur", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 3, Name = "Abdul Samad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 4, Name = "Sajid Ul Hoque", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null),FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 2},
+
+                new Student(){RollNo = 5, Name = "Pabel Islam", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 5, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                //Class 4
+                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 3},
+
+                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null),FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 4},
+
+                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 4, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                //class 3
+                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 3, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                //class 2
+                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 2, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                //class 1
+                new Student(){RollNo = 1, Name = "Tajimul Hoque Raheel", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 2, Name = "Raihan Saikat", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+                new Student(){RollNo = 3, Name = "Abdul Ahad Limon", BirthDate = DateTime.ParseExact("2008-01-01","yyyy-MM-dd",null), FatherName = "Sahab Uddin", MotherName = "Rina Akther", ClassID = 1, Address = "Naik-sofi-coloni, Namarbazar, Sitakund", GuardianMobileNumber = "01831541161", GuardianEmail = "robinhaider69@gmail.com", ReligionID = 1},
+
+
+            };
+
+            foreach (var student in students)
+            {
+                var studentInDatabase = context.Students.FirstOrDefault(s => s.ClassID == student.ClassID && s.RollNo == student.RollNo);
+                if (studentInDatabase == null)
+                {
+                    context.Students.Add(student);
+                }
+            }
+
+            //students.ForEach(s=>context.Students.AddOrUpdate(p=>p.RollNo,s));
 
             //Subject
             var subjects = new List<Subject>()
@@ -179,6 +192,8 @@ namespace Primary_School_Management_System___2.Migrations
             };
 
             examTypes.ForEach(s => context.ExamTypes.AddOrUpdate(p=>p.TypeName,s));
+
+            
 
         }
     }

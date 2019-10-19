@@ -198,12 +198,17 @@
     <Compile Include="Migrations\201910161706314_Result.Designer.cs">
       <DependentUpon>201910161706314_Result.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910190511243_ReligionModel.cs" />
+    <Compile Include="Migrations\201910190511243_ReligionModel.Designer.cs">
+      <DependentUpon>201910190511243_ReligionModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\ExamType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Religion.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subject.cs" />
@@ -307,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910161706314_Result.resx">
       <DependentUpon>201910161706314_Result.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910190511243_ReligionModel.resx">
+      <DependentUpon>201910190511243_ReligionModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

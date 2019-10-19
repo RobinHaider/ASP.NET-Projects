@@ -24,6 +24,9 @@ namespace Primary_School_Management_System___2.Models
         public string MobileNumber { get; set; }
 
         [Required]
+        public int ReligionID { get; set; }
+
+        [Required]
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Address must be between 10 to 100 character")]
         public string Address { get; set; }
 
@@ -31,6 +34,7 @@ namespace Primary_School_Management_System___2.Models
         [RegularExpression(@"^[0-9]{17}$", ErrorMessage = "NID Number must be 17 digits")]
         public string NID { get; set; }
 
+        public virtual Religion Religion { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

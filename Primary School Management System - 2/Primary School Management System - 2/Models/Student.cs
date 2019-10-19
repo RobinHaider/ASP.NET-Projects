@@ -12,6 +12,7 @@ namespace Primary_School_Management_System___2.Models
 
         [Required]
         [Range(1, 300, ErrorMessage = "RollNo must be between 1 to 300")]
+        [Display(Name = "Roll No")]
         public int RollNo { get; set; }
 
         [Required]
@@ -41,6 +42,9 @@ namespace Primary_School_Management_System___2.Models
         public int ClassID { get; set; }
 
         [Required]
+        public int ReligionID { get; set; }
+
+        [Required]
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Address must be between 10 to 100 character")]
         public string Address { get; set; }
 
@@ -54,6 +58,7 @@ namespace Primary_School_Management_System___2.Models
         public string GuardianEmail { get; set; }
 
         public virtual Class Class { get; set; }
+        public virtual Religion Religion { get; set; }
         public virtual ICollection<Result> Results { get; set; }
     }
 }
