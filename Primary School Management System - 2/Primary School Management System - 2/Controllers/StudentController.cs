@@ -139,6 +139,45 @@ namespace Primary_School_Management_System___2.Controllers
             return RedirectToAction("Index");
         }
 
+        //Enroll Student....
+        public ActionResult EnrollStudent()
+        {
+            return View();
+        }
+
+        public ActionResult EnrollStudentPost()
+        {
+            var students = db.Students.ToList();
+
+            foreach (var student in students)
+            {
+                var subjects = db.Subjects.Where(s => s.ClassID == student.ClassID).ToList();
+
+                foreach (var subject in subjects)
+                {
+                    var results = db.Results.Where(r => r.StudentID == student.ID && r.SubjectID == subject.ID).ToList();
+                    if (results == null)
+                    {
+                        Result result = new Result();
+                        result.StudentID = student.ID;
+                        result.SubjectID = subject.ID;
+                        result.ExamTypeID = 1;
+
+                        db.Results.Add(result);
+                        db.SaveChanges();
+
+                        result.ExamTypeID = 2;
+
+                        db.Results.Add(result);
+                        db.SaveChanges();
+                    }
+                    
+                }
+            }
+
+            return RedirectToAction("EnrollStudent");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
