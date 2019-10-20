@@ -156,16 +156,21 @@ namespace Primary_School_Management_System___2.Controllers
                 foreach (var subject in subjects)
                 {
                     var results = db.Results.Where(r => r.StudentID == student.ID && r.SubjectID == subject.ID).ToList();
-                    if (results == null)
+
+                    Result result = new Result();
+                    result.StudentID = student.ID;
+                    result.SubjectID = subject.ID;
+
+                    if (results.FirstOrDefault(r=> r.ExamTypeID==1) == null)
                     {
-                        Result result = new Result();
-                        result.StudentID = student.ID;
-                        result.SubjectID = subject.ID;
                         result.ExamTypeID = 1;
 
                         db.Results.Add(result);
                         db.SaveChanges();
+                    }
 
+                    if (results.FirstOrDefault(r => r.ExamTypeID == 2) == null)
+                    {
                         result.ExamTypeID = 2;
 
                         db.Results.Add(result);
@@ -173,6 +178,23 @@ namespace Primary_School_Management_System___2.Controllers
                     }
                     
                 }
+            }
+
+            return RedirectToAction("EnrollStudent");
+        }
+
+        //Add Random Number to the subjects...
+        public ActionResult AddRandomGradeToSubjects()
+        {
+            Random random = new Random();
+
+            var results = db.Results.ToList();
+
+            foreach (var result in results)
+            {
+                result.Number = random.Next(40, 100);
+                db.Entry(result).State = EntityState.Modified;
+                db.SaveChanges();
             }
 
             return RedirectToAction("EnrollStudent");

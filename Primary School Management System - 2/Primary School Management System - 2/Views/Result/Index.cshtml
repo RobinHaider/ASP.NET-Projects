@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Primary_School_Management_System___2.View_Model.ResultVM>
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExamType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bangla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.English)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Math)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneralScience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SocialScience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IslamicEdication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinduismEducation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuddhismEducation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChristianityEducation)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExamType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RollNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bangla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.English)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Math)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneralScience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SocialScience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IslamicEdication)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HinduismEducation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuddhismEducation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChristianityEducation)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>
