@@ -9,7 +9,9 @@ namespace Primary_School_Management_System___2.View_Model
     public class ResultVM
     {
         public string Class { get; set; }
+        [Display(Name = "Exam Type")]
         public string ExamType { get; set; }
+        [Display(Name = "Roll No")]
         public int RollNo { get; set; }
         public string Name { get; set; }
         [Display(Name = "বাংলা")]

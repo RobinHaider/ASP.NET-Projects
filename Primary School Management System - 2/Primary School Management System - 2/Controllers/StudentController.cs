@@ -59,6 +59,7 @@ namespace Primary_School_Management_System___2.Controllers
         public ActionResult Create()
         {
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "ClassName");
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View();
         }
 
@@ -67,7 +68,7 @@ namespace Primary_School_Management_System___2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RollNo,Name,BirthDate,FatherName,MotherName,ClassID,Address,GuardianMobileNumber,GuardianEmail")] Student student)
+        public ActionResult Create([Bind(Include = "ID,RollNo,Name,BirthDate,FatherName,MotherName,ClassID,Address,ReligionID,GuardianMobileNumber,GuardianEmail")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +78,7 @@ namespace Primary_School_Management_System___2.Controllers
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "ClassName", student.ClassID);
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(student);
         }
 
@@ -93,6 +95,7 @@ namespace Primary_School_Management_System___2.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "ClassName", student.ClassID);
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(student);
         }
 
@@ -101,7 +104,7 @@ namespace Primary_School_Management_System___2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,RollNo,Name,BirthDate,FatherName,MotherName,ClassID,Address,GuardianMobileNumber,GuardianEmail")] Student student)
+        public ActionResult Edit([Bind(Include = "ID,RollNo,Name,BirthDate,FatherName,MotherName,ClassID,Address,ReligionID,GuardianMobileNumber,GuardianEmail")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -110,6 +113,7 @@ namespace Primary_School_Management_System___2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "ClassName", student.ClassID);
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(student);
         }
 

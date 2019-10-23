@@ -41,6 +41,7 @@ namespace Primary_School_Management_System___2.Controllers
         // GET: Teacher/Create
         public ActionResult Create()
         {
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Primary_School_Management_System___2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Email,MobileNumber,Address,NID")] Teacher teacher)
+        public ActionResult Create([Bind(Include = "ID,Name,Email,MobileNumber,Address,ReligionID,NID")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace Primary_School_Management_System___2.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(teacher);
         }
 
@@ -73,6 +75,8 @@ namespace Primary_School_Management_System___2.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(teacher);
         }
 
@@ -81,7 +85,7 @@ namespace Primary_School_Management_System___2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Email,MobileNumber,Address,NID")] Teacher teacher)
+        public ActionResult Edit([Bind(Include = "ID,Name,Email,MobileNumber,Address,ReligionID,NID")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
@@ -89,6 +93,8 @@ namespace Primary_School_Management_System___2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.ReligionID = new SelectList(db.Religions, "ID", "Name");
             return View(teacher);
         }
 

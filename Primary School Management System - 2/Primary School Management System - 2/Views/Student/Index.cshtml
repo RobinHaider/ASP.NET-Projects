@@ -42,7 +42,7 @@
             @Html.DisplayNameFor(model => model.GuardianMobileNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GuardianEmail)
+            Religion
         </th>
         <th></th>
     </tr>
@@ -74,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.GuardianMobileNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GuardianEmail)
+            @Html.DisplayFor(modelItem => item.Religion.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

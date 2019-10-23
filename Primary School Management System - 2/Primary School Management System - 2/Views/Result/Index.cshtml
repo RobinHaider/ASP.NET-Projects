@@ -6,9 +6,11 @@
 
 <h2>Results</h2>
 
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
+@using (Html.BeginForm())
+{
+    <p>Select Class: @Html.DropDownList("SelectedClass","Select Class") ExamType: @Html.DropDownList("SelectedExamType", "Select Type") <input type="submit" value="Filter"/></p>
+    <p>Search Student: @Html.TextBox("searchStudent") <input type="submit" value="Search"/></p>
+}
 <table class="table">
     <tr>
         <th>
