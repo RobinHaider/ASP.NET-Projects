@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Primary_School_Management_System___2.View_Model.ClassVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassTeacher)
+        </th>
+        <th> @Html.DisplayNameFor(model => model.Subjects)</th>
+        <th> @Html.DisplayNameFor(model => model.TotalStudent)</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassTeacher)
+        </td>
+        <td>
+            @foreach (var subject in item.Subjects)
+            {
+                <p>@subject</p>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalStudent)
+        </td>
+        <td>
+            <a href="#">Assign or Change Class Teacher</a>
+        </td>
+    </tr>
+}
+
+</table>
