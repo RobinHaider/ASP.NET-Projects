@@ -290,6 +290,7 @@
     <Content Include="Views\Student\EnrollStudent.cshtml" />
     <Content Include="Views\Result\Index.cshtml" />
     <Content Include="Views\Class\Index.cshtml" />
+    <Content Include="Views\Class\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

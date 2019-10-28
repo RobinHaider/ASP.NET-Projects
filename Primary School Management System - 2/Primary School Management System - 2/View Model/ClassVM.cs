@@ -8,6 +8,7 @@ namespace Primary_School_Management_System___2.View_Model
 {
     public class ClassVM
     {
+        public int ID { get; set; }
         public string Class { get; set; }
         [Display(Name = "Class Teacher")]
         public string ClassTeacher { get; set; }
