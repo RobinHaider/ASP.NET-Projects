@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Primary_School_Management_System___2.Models.Result>
+
+@{
+    ViewBag.Title = "CourseResult";
+}
+
+<h2>Course Result</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>Select Class: @Html.DropDownList("SelectedClass", "Select Class")</p>
+    <p>Select Subject:
+        @Html.DropDownList("SelectedSubject")
+
+        ExamType: @Html.DropDownList("SelectedExamType", "Select Type")  <input type="submit" value="Search" /></p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.RollNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.RollNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#SelectedClass").change(function () {
+                var classId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: '/Result/GetSubjectByClass',
+                    data: {clsID: classId},
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data) {     
+                    var select = $("#SelectedSubject");
+                    select.empty();
+                    select.append($('<option/>', {
+                        text: "Select Subject"
+                    }));
+                    $.each(data, function (index, itemData) {
+                        select.append($('<option/>', {
+                            value: itemData.Value,
+                            text: itemData.Text
+                        }));
+                    });
+                }
+
+                function errorFunc() {
+                    alert('error');
+                }
+            });
+        });
+    </script>
+}
