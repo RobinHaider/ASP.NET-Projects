@@ -219,6 +219,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="View Model\ClassVM.cs" />
     <Compile Include="View Model\ResultVM.cs" />
+    <Compile Include="View Model\StudentResultVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -292,6 +293,7 @@
     <Content Include="Views\Class\Index.cshtml" />
     <Content Include="Views\Class\Edit.cshtml" />
     <Content Include="Views\Result\SingleCourseIndex.cshtml" />
+    <Content Include="Views\Student\SingleStudentResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

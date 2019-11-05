@@ -11,7 +11,7 @@
 </p>
 @using (Html.BeginForm())
 {
-    <p>Select Class: @Html.DropDownList("SelectedClass","All") 
+    <p>Select Class: @Html.DropDownList("SelectedClass","Select Class") 
         <input type="submit" value="Filter"/></p>
     <p>Search Student: @Html.TextBox("searchString") <input type="submit" value="Search"/></p>
 }
@@ -80,7 +80,8 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
-            <a href="">Result</a>
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Result", "SingleStudentResult", new { id=item.ID })
         </td>
     </tr>
 }

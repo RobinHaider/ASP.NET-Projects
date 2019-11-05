@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Primary_School_Management_System___2.DAL;
@@ -120,9 +121,10 @@ namespace Primary_School_Management_System___2.Controllers
             return View(resultVms);
         }
 
-
+        //Single course Result......
         public ActionResult SingleCourseIndex(int? SelectedClass, int? SelectedSubject, int? SelectedExamType)
         {
+            //Load Dropdowns....
             var classes = db.Classes.ToList();
             ViewBag.SelectedClass = new SelectList(classes, "ID", "ClassName", SelectedClass);
 
@@ -141,7 +143,7 @@ namespace Primary_School_Management_System___2.Controllers
 
             List<Result> subjectResults = new List<Result>();
 
-            if (SelectedClass != null && SelectedSubject != null && SelectedExamType != null)
+            if (SelectedSubject != null && SelectedExamType != null)
             {
                 subjectResults = db.Results
                     .Where(s => s.SubjectID == SelectedSubject && s.ExamTypeID == SelectedExamType)
@@ -152,6 +154,7 @@ namespace Primary_School_Management_System___2.Controllers
             return View(subjectResults);
         }
 
+        //Load dropdown for subject after selecting the class.....
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult GetSubjectByClass(int clsID)
         {
@@ -160,6 +163,18 @@ namespace Primary_School_Management_System___2.Controllers
             var selectedSubject = new SelectList(subjectList, "ID", "Name");
 
             return Json(selectedSubject, JsonRequestBehavior.AllowGet);
+        }
+        //End of single course result.........
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

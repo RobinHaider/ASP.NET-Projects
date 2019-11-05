@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PagedList;
 using Primary_School_Management_System___2.DAL;
 using Primary_School_Management_System___2.Models;
+using Primary_School_Management_System___2.View_Model;
 
 namespace Primary_School_Management_System___2.Controllers
 {
@@ -22,22 +23,23 @@ namespace Primary_School_Management_System___2.Controllers
             var classes = db.Classes.ToList();
             ViewBag.SelectedClass = new SelectList(classes,"ID", "ClassName", SelectedClass);
 
-            int classId = SelectedClass.GetValueOrDefault();
+            List<Student> students = new List<Student>();
 
-            var students = db.Students
-                .Where(c => !SelectedClass.HasValue || c.ClassID == classId)
-                .OrderBy(c => c.RollNo)
-                .Include(c => c.Class);
-
+            if (SelectedClass != null)
+            {
+                students = db.Students
+                    .Where(c => !SelectedClass.HasValue || c.ClassID == SelectedClass)
+                    .OrderBy(c => c.RollNo)
+                    .Include(c => c.Class).ToList();
+            }
+            
             //for searching
             if (!String.IsNullOrEmpty(searchString))
             {
-                students = students.Where(s => s.Name.Contains(searchString));
+                students = students.Where(s => s.Name.Contains(searchString)).ToList();
             }
 
-            
-
-            return View(students.ToList());
+            return View(students);
         }
 
         // GET: Student/Details/5
@@ -203,6 +205,42 @@ namespace Primary_School_Management_System___2.Controllers
 
             return RedirectToAction("EnrollStudent");
         }
+
+        //Single Student Result......
+        public ActionResult SingleStudentResult(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+
+            var subjects = db.Subjects.Where(s => s.ClassID == student.ClassID).ToList();
+
+            List<StudentResultVM> studentResultVms = new List<StudentResultVM>();
+
+            foreach (var subject in subjects)
+            {
+                StudentResultVM studentResultVm = new StudentResultVM();
+                studentResultVm.Subject = subject.Name;
+
+                studentResultVm.HalfYearly = student.Results.Single(s => s.SubjectID == subject.ID && s.ExamTypeID == 1).Number;
+
+                studentResultVm.Final =
+                    student.Results.Single(s => s.SubjectID == subject.ID && s.ExamTypeID == 2).Number;
+
+                studentResultVms.Add(studentResultVm);
+            }
+
+            ViewBag.StudentName = student.Name;
+
+            return View(studentResultVms);
+        }
+        //End of Single student result...
 
         protected override void Dispose(bool disposing)
         {
