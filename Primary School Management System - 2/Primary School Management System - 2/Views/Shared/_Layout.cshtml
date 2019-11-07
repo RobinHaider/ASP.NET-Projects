@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Primary School Mangement System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("stylesheet", required: false)
 
 </head>
 <body>
@@ -39,7 +40,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - RobinHaider</p>
+            <p>&copy; @DateTime.Now.Year - <a href="http://robinhaider.com/" target="_blank">Robin Haider</a></p>
         </footer>
     </div>
 

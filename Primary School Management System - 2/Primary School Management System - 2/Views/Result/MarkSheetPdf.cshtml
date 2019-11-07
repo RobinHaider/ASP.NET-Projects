@@ -1,0 +1,76 @@
+﻿@using iTextSharp.text
+@using Primary_School_Management_System___2.Models
+@model IEnumerable<Primary_School_Management_System___2.Models.Result>
+
+@{
+    Layout = null;
+    Student student = ViewBag.Student;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MarkSheetPdf</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <div class="heading2">
+        <div style="text-align: center;">
+            <div class="header">
+
+                <h1>Primary School Management System</h1>
+            </div>
+            
+        </div>
+        <br />
+
+
+        <div style="text-align: center;"><h4>@student.Name</h4></div>
+        <div style="text-align: center;"><h4>Class: @student.Class.ClassName</h4></div>
+        <div style="text-align: center;"><h4>Roll No: @student.RollNo</h4></div>
+        <div style="text-align: center;"><h4>Contact: @student.GuardianMobileNumber</h4></div>
+        <div style="text-align: center;"><h4>Address: @student.Address</h4></div>
+
+        <br />
+    </div>
+    <div class="table-responsive table-striped, table-condensed, table-bordered">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Subject</td>
+                    <td>Exam Type</td>
+                    <td>Number</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var result in Model)
+                {
+                    <tr>
+                        <td>@result.Subject.Name</td>
+                        <td>@result.ExamType.TypeName</td>
+                        <td>@result.Number</td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div>
+        <hr />
+        <footer>
+            <b><p>&copy; <a href="http://robinhaider.com/" target="_blank">Robin Haider</a> - Learn What You Love</p></b>
+        </footer>
+    </div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

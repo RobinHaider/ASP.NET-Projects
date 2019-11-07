@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Primary_School_Management_System___2.DAL;
 using Primary_School_Management_System___2.Models;
 using Primary_School_Management_System___2.View_Model;
+using Rotativa;
 
 namespace Primary_School_Management_System___2.Controllers
 {
@@ -42,6 +43,7 @@ namespace Primary_School_Management_System___2.Controllers
                 {
                     ResultVM resultVm = new ResultVM();
 
+                    resultVm.ID = student.ID;
                     resultVm.Class = student.Class.ClassName;
                     resultVm.RollNo = student.RollNo;
                     resultVm.Name = student.Name;
@@ -166,6 +168,20 @@ namespace Primary_School_Management_System___2.Controllers
         }
         //End of single course result.........
 
+        //Generate Pdf Marksheet......
+        //Pdf View.............
+        public ActionResult MarkSheetPdf(Student student)
+        {
+            var results = db.Results.Where(s => s.StudentID == student.ID).ToList();
+            ViewBag.Student = db.Students.Find(student.ID);
+            return View(results);
+        }
+
+        public ActionResult ResultViewToPdf(int id)
+        {
+            var student = db.Students.Find(id);
+            return new ActionAsPdf("MarkSheetPdf", student) { FileName = student.Name + "MarkSheet" + DateTime.Now.ToLocalTime() + ".pdf" };
+        }
 
 
         protected override void Dispose(bool disposing)

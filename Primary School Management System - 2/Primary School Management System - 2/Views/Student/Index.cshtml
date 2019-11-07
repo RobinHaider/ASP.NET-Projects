@@ -3,87 +3,97 @@
 @{
     ViewBag.Title = "Students";
 }
+<br />
+<h2>Student List</h2>
 
-<h2>Index</h2>
+<p>Select Class: @Html.DropDownList("SelectedClass", "Select Class")</p>
 
-<p>
-    @Html.ActionLink("Add Student", "Create")
-</p>
-@using (Html.BeginForm())
-{
-    <p>Select Class: @Html.DropDownList("SelectedClass","Select Class") 
-        <input type="submit" value="Filter"/></p>
-    <p>Search Student: @Html.TextBox("searchString") <input type="submit" value="Search"/></p>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Class.ClassName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RollNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FatherName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MotherName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GuardianMobileNumber)
-        </th>
-        <th>
-            Religion
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Class.ClassName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RollNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FatherName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MotherName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GuardianMobileNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Religion.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
-            @Html.ActionLink("Result", "SingleStudentResult", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+@* Normal and Themeroller *@
+@*<table id="studentsTable" class="display">*@
+@* Sementic UI *@
+<table id="studentsTable" class="ui celled table">
+    @* Bootstrap *@
+    @*<table id="studentsTable" class="table table-bordered table-striped">*@
+    <thead>
+        <tr>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>FatherName</th>
+            <th>MotherName</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
 </table>
+
+@section stylesheet
+{
+    @* Normal dataTable *@
+    @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+    <!-- jQuery ThemeRoller -->
+    @*<link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css" rel="stylesheet" />*@
+
+    <!-- Semantic UI -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.semanticui.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap 4 -->
+    @*<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
+
+}
+
+@section scripts
+{
+    @* Normal DataTable *@
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    @* jQuery ThemeRoller*@
+    @*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>*@
+
+    @* Semantic UI*@
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.semanticui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+
+    @* Bootstrap 4*@
+    @*<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $("#studentsTable").DataTable();
+            $("#studentsTable").hide();
+            $("#SelectedClass").change(function () {
+                $("#studentsTable").show();
+                table.row().clear().draw(false);
+                var classId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: '/Student/GetStudentList',
+                    data: { clsID: classId },
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data) {
+                    
+                    $.each(data, function (index, itemData) {
+                        table.row.add([
+                            itemData.RollNo,
+                            itemData.Name,
+                            itemData.Address,
+                            itemData.FatherName,
+                            itemData.MotherName
+                        ]).draw(false);
+                    });
+                }
+
+                function errorFunc() {
+                    alert('Please Select a Class');
+                }
+            });
+        });
+    </script>
+
+}

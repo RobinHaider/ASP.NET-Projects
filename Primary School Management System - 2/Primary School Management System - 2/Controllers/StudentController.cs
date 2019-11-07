@@ -18,28 +18,29 @@ namespace Primary_School_Management_System___2.Controllers
         private SchoolDbContext db = new SchoolDbContext();
 
         // GET: Student
-        public ActionResult Index(int? SelectedClass, string searchString)
+        public ActionResult Index( string searchString)
         {
             var classes = db.Classes.ToList();
-            ViewBag.SelectedClass = new SelectList(classes,"ID", "ClassName", SelectedClass);
+            ViewBag.SelectedClass = new SelectList(classes, "ID", "ClassName");
 
-            List<Student> students = new List<Student>();
 
-            if (SelectedClass != null)
-            {
-                students = db.Students
-                    .Where(c => !SelectedClass.HasValue || c.ClassID == SelectedClass)
-                    .OrderBy(c => c.RollNo)
-                    .Include(c => c.Class).ToList();
-            }
-            
-            //for searching
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = students.Where(s => s.Name.Contains(searchString)).ToList();
-            }
+            return View();
+        }
 
-            return View(students);
+        //Get student list for jquery DataTable
+        //public ActionResult GetStudentList(int? clsID)
+        //{
+        //    List<Student> students = db.Students.ToList();
+
+        //    return Json(new { data = students }, JsonRequestBehavior.AllowGet);
+        //}
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult GetStudentList(int clsID)
+        {
+            List<Student> students = db.Students.ToList();
+
+            return Json(students, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Student/Details/5
