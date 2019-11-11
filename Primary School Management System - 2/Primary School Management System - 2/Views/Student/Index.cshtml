@@ -1,15 +1,14 @@
-﻿@model IEnumerable<Primary_School_Management_System___2.Models.Student>
-
+﻿
 @{
     ViewBag.Title = "Students";
 }
+
 <br />
 <h2>Student List</h2>
 
+
 <p>Select Class: @Html.DropDownList("SelectedClass", "Select Class")</p>
 
-@* Normal and Themeroller *@
-@*<table id="studentsTable" class="display">*@
 @* Sementic UI *@
 <table id="studentsTable" class="ui celled table">
     @* Bootstrap *@
@@ -21,9 +20,20 @@
             <th>Address</th>
             <th>FatherName</th>
             <th>MotherName</th>
+            <th></th>
         </tr>
     </thead>
-    <tbody id="tableBody"></tbody>
+    
+    <tfoot>
+        <tr>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>FatherName</th>
+            <th>MotherName</th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
 
 @section stylesheet
@@ -49,51 +59,79 @@
     @* Normal DataTable *@
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
-    @* jQuery ThemeRoller*@
-    @*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>*@
 
     @* Semantic UI*@
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.semanticui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
 
-    @* Bootstrap 4*@
-    @*<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
-        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function () {
-            var table = $("#studentsTable").DataTable();
-            $("#studentsTable").hide();
+
+            
+
             $("#SelectedClass").change(function () {
-                $("#studentsTable").show();
-                table.row().clear().draw(false);
+                
                 var classId = $(this).val();
-                $.ajax({
-                    type: "GET",
-                    url: '/Student/GetStudentList',
-                    data: { clsID: classId },
-                    success: successFunc,
-                    error: errorFunc
-                });
+                
+                $("#studentsTable").DataTable().destroy();
+                //$("#studentsTable").DataTable().clear();
+                //$("#studentsTable").DataTable().clear().draw();
+                //$("#studentsTable").DataTable().fnClearTable();;
 
-                function successFunc(data) {
-                    
-                    $.each(data, function (index, itemData) {
-                        table.row.add([
-                            itemData.RollNo,
-                            itemData.Name,
-                            itemData.Address,
-                            itemData.FatherName,
-                            itemData.MotherName
-                        ]).draw(false);
+
+                
+                $("#studentsTable").DataTable(
+                    {
+                        "ajax": {
+                            "url": "/Student/GetStudentList?clsID=" + classId,
+                            "type": "GET",
+                            "datatype": "json"
+                        },
+
+                        "columnDefs":
+                        [{
+                                "targets": [1],
+                                "orderable": false
+                            },
+                            {
+                                "targets": [2],
+                                "orderable": false
+                            },
+                            {
+                                "targets": [3],
+                                "orderable": false
+                            },
+                            {
+                                "targets": [4],
+                                "orderable": false
+                            },
+                            {
+                                "targets": [5],
+                                "orderable": false
+                            }],
+
+                        "columns": [
+                            { "data": "RollNo", "autoWidth": true  },
+                            { "data": "Name", "autoWidth": true  },
+                            { "data": "Address" , "autoWidth": true },
+                            { "data": "FatherName" , "autoWidth": true },
+                            { "data": "MotherName", "autoWidth": true  },
+                            {
+                                "render": function (data, type, full, meta) { return '<a class="btn btn-primary" href="/Student/Edit/' + full.ID + '">Edit</a> <a class="btn btn-info" href="/Student/Details/' + full.ID + '">Details</a>'; }
+
+                            },
+
+                        ]
+
                     });
-                }
 
-                function errorFunc() {
-                    alert('Please Select a Class');
-                }
             });
-        });
-    </script>
 
+            
+
+        });
+
+    </script>
 }
+

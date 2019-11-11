@@ -27,20 +27,13 @@ namespace Primary_School_Management_System___2.Controllers
             return View();
         }
 
-        //Get student list for jquery DataTable
-        //public ActionResult GetStudentList(int? clsID)
-        //{
-        //    List<Student> students = db.Students.ToList();
+        
 
-        //    return Json(new { data = students }, JsonRequestBehavior.AllowGet);
-        //}
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        public JsonResult GetStudentList(int clsID)
+        public ActionResult GetStudentList(int clsID)
         {
-            List<Student> students = db.Students.ToList();
-
-            return Json(students, JsonRequestBehavior.AllowGet);
+            db.Configuration.LazyLoadingEnabled = false;
+            var data = db.Students.Where(s=>s.ClassID== clsID).ToList();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Student/Details/5
