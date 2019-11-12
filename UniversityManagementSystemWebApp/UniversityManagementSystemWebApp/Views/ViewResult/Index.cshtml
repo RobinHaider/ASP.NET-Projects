@@ -1,0 +1,151 @@
+﻿@model UniversityManagementSystemWebApp.Models.ViewModel.ResultPdfVM
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style
+{
+<link href="~/Content/Background.css" rel="stylesheet" />
+    
+}
+
+<h2 align="center">View Result</h2>
+
+<div align="center">
+    @using (Html.BeginForm("ResultViewToPdf", "ViewResult", FormMethod.Post, new {Id = "ViewResult", name = "ViewResult"}))
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                <tr>
+                    <td><label>Student Reg. No</label></td>
+                    <td>
+                        <select name="studentId" id="studentId">
+                            <option value="">Select Student</option>
+                            @foreach (var student in ViewBag.Student)
+                            {
+                                <option value="@student.Id">@student.RegistationNumber</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>@Html.Label("Name")</td>
+                    <td>@Html.TextBox("Name",null, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Email")</td>
+                    <td>@Html.TextBox("Email",null, new { @readonly = "readonly" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Department")</td>
+                    <td>@Html.TextBox("Department",null, new { @readonly = "readonly" })</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Make PDF"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    }
+</div>
+<hr/>
+<div>
+    <table id="myTable" class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Name</th>
+                <th>Credit</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+
+@section scripts
+{
+
+<script src="~/Scripts/jquery.validate.js"></script>
+    
+    <script>
+        
+        $().ready(function () {
+            // validate the comment form when it is submitted
+            //$("#registerForm").validate();
+
+            // validate signup form on keyup and submit
+            $("#ViewResult").validate({
+                rules: {
+                    studentId: "required"
+                    
+                },
+                messages: {
+                    studentId: "Please Select Stdudent Reg. No"
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+
+            $("#myTable").hide();
+
+            $("#studentId").change(function () {
+
+                $("#myTable").show();
+
+                var studentId = $("#studentId").val();
+                
+                $("#Name").val("");
+                $("#Email").val("");
+                $("#Department").val("");
+                $("#tableBody").empty();
+                
+                var json = { studentId: studentId };
+                $.ajax({
+                    type: "POST",
+                    url: '/EnrollCourse/StudentInfoByStdId',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+
+                        $("#Name").val(data.Name);
+                        $("#Email").val(data.Email);
+                        $("#Department").val(data.Department);
+
+
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: '/ViewResult/GetResultByStdId',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //alert(data);
+
+                        $.each(data, function (key, value) {
+                            
+
+                            $("#tableBody").append('<tr><td>' + value.CourseCode + '</td><td>' + value.Name + '</td>' +
+                                '<td>' + value.Credit + '</td><td>' + value.Grade + '</td></tr>');
+
+                        });
+
+                    }
+                });
+
+            });
+        });
+    </script>
+}

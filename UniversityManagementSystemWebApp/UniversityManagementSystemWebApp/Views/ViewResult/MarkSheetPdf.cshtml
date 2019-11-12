@@ -1,0 +1,78 @@
+﻿@using iTextSharp.text
+@using UniversityManagementSystemWebApp.Models
+@using UniversityManagementSystemWebApp.Models.ViewModel
+
+@{
+    Layout = null;
+    RegisterStudent student = ViewBag.StudentInfo;
+    List<ViewResultVM> resultVms = ViewBag.Result;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MarkSheetPdf</title>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    
+</head>
+<body>
+    <div class="heading2">
+        <div style="text-align: center;">
+            <div class="header">
+
+                <img src="http://static.hwpi.harvard.edu/files/styles/os_files_xxlarge/public/ccva/files/ccva-harvard-footer.png?m=1489565206&itok=EZYV1jcS" width="600" height="200">
+            </div>
+            @*<h2>Harvard University</h2>*@
+        </div>
+        <br/>
+        
+
+        <div style="text-align: center;" ><h4>@student.Name</h4></div>
+        <div style="text-align: center;" ><h4>@ViewBag.Department</h4></div>
+        <div style="text-align: center;" ><h4>@student.RegistationNumber</h4></div>
+        <div style="text-align: center;" ><h4>@student.Email</h4></div>
+        <div style="text-align: center;" ><h4>@student.Contact</h4></div>
+
+        <br/>
+    </div>
+    <div class="table-responsive table-striped, table-condensed, table-bordered">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Course Code</td>
+                    <td>Name</td>
+                    <td>Grade</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var result in @resultVms)
+                {
+                    <tr>
+                        <td>@result.CourseCode</td>
+                        <td>@result.Name</td>
+                        <td>@result.Grade</td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+
+        </table>
+</div>
+
+<div>
+    <hr />
+    <footer>
+        <b><p>&copy; RIFK37 - Learn What You Love</p></b> 
+    </footer>
+</div>
+
+<script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</body>
+</html>

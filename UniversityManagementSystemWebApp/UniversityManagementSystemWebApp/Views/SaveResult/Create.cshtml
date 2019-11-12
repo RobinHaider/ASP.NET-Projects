@@ -1,0 +1,131 @@
+﻿@model UniversityManagementSystemWebApp.Models.SaveResult
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Save</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Result</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegisterStudentId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RegisterStudentId,null, "Select Student",null)
+                @Html.ValidationMessageFor(model => model.RegisterStudentId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Department)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.CourseId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"),
+             "Select Course", new { id = "CourseId" })
+                @Html.ValidationMessageFor(model => model.CourseId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GradeId,  new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.GradeId, null, "Select Grade", null)
+                @Html.ValidationMessageFor(model => model.GradeId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+    $(document).ready(function () {
+
+        $("#RegisterStudentId").change(function () {
+            var studentId = $("#RegisterStudentId").val();
+            $("#Name").val("");
+            $("#Email").val("");
+            $("#Department").val("");
+            $("#CourseId").empty();
+            $("#CourseId").append('<option value="">Select Course</option>');
+
+            var json = { studentId: studentId };
+            $.ajax({
+                type: "POST",
+                url: '/EnrollCourse/StudentInfoByStdId',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+
+                    $("#Name").val(data.Name);
+                    $("#Email").val(data.Email);
+                    $("#Department").val(data.Department);
+
+
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '/SaveResult/EnrollCourseByStd',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+
+                    $.each(data, function (key, value) {
+
+                        $("#CourseId").append('<option value=' + value.Id + '>' + value.Code + '</option>');
+
+                    });
+
+                }
+            });
+
+        });
+    });
+</script>
+
+}
